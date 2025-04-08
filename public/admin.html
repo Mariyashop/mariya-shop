@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>پنل ادمین - Mariya Shop</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css" rel="stylesheet">
+  <style>
+    body { font-family: 'Vazir', sans-serif; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes sectionFadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes rowFadeIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+    .animate-fadeIn { animation: fadeIn 0.8s ease-out; }
+    .animate-sectionFadeIn { animation: sectionFadeIn 0.6s ease-out; }
+    .animate-rowFadeIn { animation: rowFadeIn 0.5s ease-out forwards; }
+    #adminContent { display: none; }
+    @media (max-width: 640px) {
+      .container { padding-left: 1rem; padding-right: 1rem; }
+    }
+  </style>
+</head>
+<body class="bg-blue-50">
+  <div id="adminLoginModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+    <div class="bg-white rounded-lg p-6 w-80 shadow-xl">
+      <h2 class="text-xl font-bold mb-4 text-gray-800">ورود به پنل ادمین</h2>
+      <form id="adminLoginForm" class="space-y-4">
+        <div>
+          <label for="adminUsername" class="block text-sm font-medium text-gray-700">نام کاربری</label>
+          <input type="text" id="adminUsername" name="adminUsername" class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-orange-400" placeholder="نام کاربری">
+        </div>
+        <div>
+          <label for="adminPassword" class="block text-sm font-medium text-gray-700">رمز عبور</label>
+          <input type="password" id="adminPassword" name="adminPassword" class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-orange-400" placeholder="رمز عبور">
+        </div>
+        <div class="flex justify-end">
+          <button type="submit" class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600">ورود</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="adminContent">
+    <header class="bg-gradient-to-r from-blue-200 to-orange-300 p-4 shadow-lg rounded-b-xl animate-fadeIn sticky top-0 z-10">
+      <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <img src="https://yt3.googleusercontent.com/fVFrfFds5nFiY7ESdi5hFcgLRkgppaRK8Pab1EZpQrD9Fx13r224gpY8dQAVlt9j59sxwYgG-Q=s900-c-k-c0x00ffffff-no-rj" alt="Logo" class="w-10 h-10 rounded-full">
+          <div class="text-2xl md:text-3xl font-bold text-white drop-shadow-md hover:scale-105 transition-transform duration-300">
+            پنل ادمین - Mariya Shop
+          </div>
+        </div>
+        <nav class="mt-2 md:mt-0">
+          <a href="index.html" class="flex items-center text-white hover:text-orange-500 transition-colors duration-200">
+            <i class="fas fa-store mr-1"></i> بازگشت به فروشگاه
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container mx-auto mt-6 px-4 space-y-10">
+      <section class="bg-white rounded-xl shadow-lg p-6 animate-sectionFadeIn">
+        <h2 class="text-xl font-bold mb-6 text-gray-800">افزودن محصول جدید</h2>
+        <form id="addProductForm" class="space-y-6">
+          <div>
+            <label for="productName" class="block text-sm font-medium text-gray-700">نام محصول</label>
+            <input type="text" id="productName" name="productName" class="mt-1 block w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-orange-400" placeholder="نام محصول">
+          </div>
+          <div>
+            <label for="productDescription" class="block text-sm font-medium text-gray-700">توضیحات</label>
+            <textarea id="productDescription" name="productDescription" class="mt-1 block w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-orange-400" placeholder="توضیحات محصول"></textarea>
+          </div>
+          <div>
+            <label for="productPrice" class="block text-sm font-medium text-gray-700">قیمت (تومان)</label>
+            <input type="number" id="productPrice" name="productPrice" class="mt-1 block w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-orange-400" placeholder="قیمت">
+          </div>
+          <div>
+            <label for="productImage" class="block text-sm font-medium text-gray-700">تصویر محصول</label>
+            <input type="file" id="productImage" name="productImage" class="mt-1 block w-full border border-gray-300 rounded-lg p-3" accept="image/*">
+          </div>
+          <button type="submit" class="bg-orange-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-orange-600 hover:scale-105 transition-all duration-300">
+            افزودن محصول
+          </button>
+        </form>
+      </section>
+
+      <section class="bg-white rounded-xl shadow-lg p-6 animate-sectionFadeIn">
+        <h2 class="text-xl font-bold mb-6 text-gray-800">افزودن خبر کوتاه</h2>
+        <form id="addNewsForm" class="space-y-6">
+          <div>
+            <label for="newsTitle" class="block text-sm font-medium text-gray-700">عنوان خبر</label>
+            <input type="text" id="newsTitle" name="newsTitle" class="mt-1 block w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-orange-400" placeholder="عنوان خبر">
+          </div>
+          <div>
+            <label for="newsDescription" class="block text-sm font-medium text-gray-700">توضیحات مختصر</label>
+            <textarea id="newsDescription" name="newsDescription" class="mt-1 block w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-orange-400" placeholder="توضیحات مختصر"></textarea>
+          </div>
+          <div>
+            <label for="newsImage" class="block text-sm font-medium text-gray-700">تصویر خبر</label>
+            <input type="file" id="newsImage" name="newsImage" class="mt-1 block w-full border border-gray-300 rounded-lg p-3" accept="image/*">
+          </div>
+          <button type="submit" class="bg-orange-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-orange-600 hover:scale-105 transition-all duration-300">
+            افزودن خبر
+          </button>
+        </form>
+      </section>
+
+      <section class="bg-white rounded-xl shadow-lg p-6 animate-sectionFadeIn">
+        <h2 class="text-xl font-bold mb-6 text-gray-800">کاربران ثبت شده</h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gradient-to-r from-blue-200 to-orange-300 text-white">
+              <tr>
+                <th class="px-4 py-3 text-right text-sm font-medium">شناسه</th>
+                <th class="px-4 py-3 text-right text-sm font-medium">نام کاربری</th>
+                <th class="px-4 py-3 text-right text-sm font-medium">رمز عبور</th>
+                <th class="px-4 py-3 text-center text-sm font-medium">عملیات</th>
+              </tr>
+            </thead>
+            <tbody id="usersTable" class="bg-white divide-y divide-gray-200"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="bg-white rounded-xl shadow-lg p-6 animate-sectionFadeIn">
+        <h2 class="text-xl font-bold mb-6 text-gray-800">مدیریت آگهی‌های اکانت کالاف</h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gradient-to-r from-blue-200 to-orange-300 text-white">
+              <tr>
+                <th class="px-4 py-3 text-right text-sm font-medium">شناسه</th>
+                <th class="px-4 py-3 text-right text-sm font-medium">نام اکانت</th>
+                <th class="px-4 py-3 text-right text-sm font-medium">لول</th>
+                <th class="px-4 py-3 text-right text-sm font-medium">آیدی اکانت</th>
+                <th class="px-4 py-3 text-right text-sm font-medium">قیمت</th>
+                <th class="px-4 py-3 text-right text-sm font-medium">وضعیت</th>
+                <th class="px-4 py-3 text-center text-sm font-medium">عملیات</th>
+              </tr>
+            </thead>
+            <tbody id="adsTable" class="bg-white divide-y divide-gray-200"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="bg-white rounded-xl shadow-lg p-6 animate-sectionFadeIn">
+        <h2 class="text-xl font-bold mb-6 text-gray-800">مدیریت محصولات</h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gradient-to-r from-blue-200 to-orange-300 text-white">
+              <tr>
+                <th class="px-4 py-3 text-right text-sm font-medium">شناسه</th>
+                <th class="px-4 py-3 text-right text-sm font-medium">نام محصول</th>
+                <th class="px-4 py-3 text-right text-sm font-medium">قیمت</th>
+                <th class="px-4 py-3 text-center text-sm font-medium">عملیات</th>
+              </tr>
+            </thead>
+            <tbody id="productsTable" class="bg-white divide-y divide-gray-200"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="bg-white rounded-xl shadow-lg p-6 animate-sectionFadeIn">
+        <h2 class="text-xl font-bold mb-6 text-gray-800">مدیریت اخبار کوتاه</h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gradient-to-r from-blue-200 to-orange-300 text-white">
+              <tr>
+                <th class="px-4 py-3 text-right text-sm font-medium">شناسه</th>
+                <th class="px-4 py-3 text-right text-sm font-medium">عنوان</th>
+                <th class="px-4 py-3 text-right text-sm font-medium">توضیحات</th>
+                <th class="px-4 py-3 text-center text-sm font-medium">عملیات</th>
+              </tr>
+            </thead>
+            <tbody id="newsTable" class="bg-white divide-y divide-gray-200"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    let data = { users: [], products: [], news: [] };
+
+    function loadData() {
+      fetch('/api/data')
+        .then(response => response.json())
+        .then(jsonData => {
+          data = jsonData;
+        })
+        .catch(error => console.error('خطا در بارگذاری دیتا:', error));
+    }
+
+    function saveData() {
+      fetch('/api/data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+        .then(response => response.json())
+        .then(result => console.log(result.message))
+        .catch(error => console.error('خطا در ذخیره دیتا:', error));
+    }
+
+    const adminLoginForm = document.getElementById("adminLoginForm");
+    const adminContent = document.getElementById("adminContent");
+    const adminLoginModal = document.getElementById("adminLoginModal");
+
+    adminLoginForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const username = document.getElementById("adminUsername").value;
+      const password = document.getElementById("adminPassword").value;
+
+      if(username === "mariyaadmin" && password === "rxomariya") {
+        adminLoginModal.classList.add("hidden");
+        adminContent.style.display = "block";
+        loadData();
+        setTimeout(() => {
+          loadUsers();
+          loadAdsAdmin();
+          loadProductsAdmin();
+          loadNewsAdmin();
+        }, 500);
+      } else {
+        alert("نام کاربری یا رمز عبور اشتباه است!");
+      }
+    });
+
+    document.getElementById("addProductForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("productName").value;
+      const description = document.getElementById("productDescription").value;
+      const price = document.getElementById("productPrice").value;
+      const imageInput = document.getElementById("productImage");
+      const file = imageInput.files[0];
+
+      if(file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          const imageData = event.target.result;
+          saveProduct(name, description, price, imageData);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        saveProduct(name, description, price, "");
+      }
+    });
+
+    function saveProduct(name, description, price, imageData) {
+      const newProduct = { id: data.products.length + 1, name, description, price, image: imageData, approved: true, type: "product" };
+      data.products.push(newProduct);
+      saveData();
+      alert("محصول جدید افزوده شد!");
+      document.getElementById("addProductForm").reset();
+      loadProductsAdmin();
+    }
+
+    document.getElementById("addNewsForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const title = document.getElementById("newsTitle").value;
+      const description = document.getElementById("newsDescription").value;
+      const imageInput = document.getElementById("newsImage");
+      const file = imageInput.files[0];
+
+      if(file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          const imageData = event.target.result;
+          saveNews(title, description, imageData);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        saveNews(title, description, "");
+      }
+    });
+
+    function saveNews(title, description, imageData) {
+      const newNews = { id: data.news.length + 1, title, description, image: imageData };
+      data.news.push(newNews);
+      saveData();
+      alert("خبر جدید افزوده شد!");
+      document.getElementById("addNewsForm").reset();
+      loadNewsAdmin();
+    }
+
+    function loadUsers() {
+      const usersTable = document.getElementById("usersTable");
+      usersTable.innerHTML = "";
+      if(data.users.length === 0) {
+        usersTable.innerHTML = `<tr><td colspan="4" class="text-center p-4 text-gray-600">کاربری ثبت نشده است.</td></tr>`;
+      } else {
+        data.users.forEach((user, index) => {
+          const tr = document.createElement("tr");
+          tr.className = "animate-rowFadeIn";
+          tr.style.animationDelay = `${index * 0.1}s`;
+          tr.innerHTML = `
+            <td class="px-4 py-3 text-sm text-gray-700 text-center">${user.id}</td>
+            <td class="px-4 py-3 text-sm text-gray-700">${user.username}</td>
+            <td class="px-4 py-3 text-sm text-gray-700">${user.password}</td>
+            <td class="px-4 py-3 text-center">
+              <button class="deleteUser bg-red-600 text-white px-3 py-1 rounded-lg hover:bg-red-700" data-id="${user.id}"><i class="fas fa-trash mr-1"></i>حذف</button>
+            </td>
+          `;
+          usersTable.appendChild(tr);
+        });
+        document.querySelectorAll(".deleteUser").forEach(btn => {
+          btn.addEventListener("click", function(){
+            const id = Number(this.getAttribute("data-id"));
+            deleteUser(id);
+          });
+        });
+      }
+    }
+
+    function deleteUser(id) {
+      data.users = data.users.filter(user => user.id !== id);
+      saveData();
+      alert("کاربر حذف شد.");
+      loadUsers();
+    }
+
+    function loadAdsAdmin() {
+      const ads = data.products.filter(item => item.type === "ad");
+      const adsTable = document.getElementById("adsTable");
+      adsTable.innerHTML = "";
+      if(ads.length === 0) {
+        adsTable.innerHTML = `<tr><td colspan="7" class="text-center p-4 text-gray-600">آگهی ثبت نشده است.</td></tr>`;
+      } else {
+        ads.forEach((ad, index) => {
+          const tr = document.createElement("tr");
+          tr.className = "animate-rowFadeIn";
+          tr.style.animationDelay = `${index * 0.1}s`;
+          tr.innerHTML = `
+            <td class="px-4 py-3 text-sm text-gray-700 text-center">${ad.id}</td>
+            <td class="px-4 py-3 text-sm text-gray-700">${ad.accName}</td>
+            <td class="px-4 py-3 text-sm text-gray-700">${ad.level}</td>
+            <td class="px-4 py-3 text-sm text-gray-700">${ad.accountId}</td>
+            <td class="px-4 py-3 text-sm text-gray-700">${ad.adPrice}</td>
+            <td class="px-4 py-3 text-sm text-gray-700 text-center">${ad.approved ? 'تایید شده' : 'در انتظار تایید'}</td>
+            <td class="px-4 py-3 text-center space-x-2">
+              ${!ad.approved ? `<button class="approveAd bg-blue-500 text-white px-3 py-1 rounded-lg hover:bg-blue-600" data-id="${ad.id}"><i class="fas fa-check mr-1"></i>تایید</button>` : ''}
+              <button class="deleteAd bg-red-600 text-white px-3 py-1 rounded-lg hover:bg-red-700" data-id="${ad.id}"><i class="fas fa-trash mr-1"></i>حذف</button>
+            </td>
+          `;
+          adsTable.appendChild(tr);
+        });
+        document.querySelectorAll(".approveAd").forEach(btn => {
+          btn.addEventListener("click", function(){
+            const id = Number(this.getAttribute("data-id"));
+            updateAdStatus(id, true);
+          });
+        });
+        document.querySelectorAll(".deleteAd").forEach(btn => {
+          btn.addEventListener("click", function(){
+            const id = Number(this.getAttribute("data-id"));
+            deleteAd(id);
+          });
+        });
+      }
+    }
+
+    function updateAdStatus(id, status) {
+      const ad = data.products.find(item => item.id === id);
+      if(ad) {
+        ad.approved = status;
+        saveData();
+        alert("آگهی به تایید تغییر یافت.");
+        loadAdsAdmin();
+      }
+    }
+
+    function deleteAd(id) {
+      data.products = data.products.filter(item => item.id !== id);
+      saveData();
+      alert("آگهی حذف شد.");
+      loadAdsAdmin();
+    }
+
+    function loadProductsAdmin() {
+      const products = data.products.filter(item => item.type === "product");
+      const productsTable = document.getElementById("productsTable");
+      productsTable.innerHTML = "";
+      if(products.length === 0) {
+        productsTable.innerHTML = `<tr><td colspan="4" class="text-center p-4 text-gray-600">محصولی ثبت نشده است.</td></tr>`;
+      } else {
+        products.forEach((product, index) => {
+          const tr = document.createElement("tr");
+          tr.className = "animate-rowFadeIn";
+          tr.style.animationDelay = `${index * 0.1}s`;
+          tr.innerHTML = `
+            <td class="px-4 py-3 text-sm text-gray-700 text-center">${product.id}</td>
+            <td class="px-4 py-3 text-sm text-gray-700">${product.name}</td>
+            <td class="px-4 py-3 text-sm text-gray-700">${product.price}</td>
+            <td class="px-4 py-3 text-center">
+              <button class="deleteProduct bg-red-600 text-white px-3 py-1 rounded-lg hover:bg-red-700" data-id="${product.id}"><i class="fas fa-trash mr-1"></i>حذف</button>
+            </td>
+          `;
+          productsTable.appendChild(tr);
+        });
+        document.querySelectorAll(".deleteProduct").forEach(btn => {
+          btn.addEventListener("click", function(){
+            const id = Number(this.getAttribute("data-id"));
+            deleteProduct(id);
+          });
+        });
+      }
+    }
+
+    function deleteProduct(id) {
+      data.products = data.products.filter(item => item.id !== id);
+      saveData();
+      alert("محصول حذف شد.");
+      loadProductsAdmin();
+    }
+
+    function loadNewsAdmin() {
+      const newsTable = document.getElementById("newsTable");
+      newsTable.innerHTML = "";
+      if(data.news.length === 0) {
+        newsTable.innerHTML = `<tr><td colspan="4" class="text-center p-4 text-gray-600">خبری ثبت نشده است.</td></tr>`;
+      } else {
+        data.news.forEach((item, index) => {
+          const tr = document.createElement("tr");
+          tr.className = "animate-rowFadeIn";
+          tr.style.animationDelay = `${index * 0.1}s`;
+          tr.innerHTML = `
+            <td class="px-4 py-3 text-sm text-gray-700 text-center">${item.id}</td>
+            <td class="px-4 py-3 text-sm text-gray-700">${item.title}</td>
+            <td class="px-4 py-3 text-sm text-gray-700">${item.description}</td>
+            <td class="px-4 py-3 text-center">
+              <button class="deleteNews bg-red-600 text-white px-3 py-1 rounded-lg hover:bg-red-700" data-id="${item.id}"><i class="fas fa-trash mr-1"></i>حذف</button>
+            </td>
+          `;
+          newsTable.appendChild(tr);
+        });
+        document.querySelectorAll(".deleteNews").forEach(btn => {
+          btn.addEventListener("click", function(){
+            const id = Number(this.getAttribute("data-id"));
+            deleteNews(id);
+          });
+        });
+      }
+    }
+
+    function deleteNews(id) {
+      data.news = data.news.filter(item => item.id !== id);
+      saveData();
+      alert("خبر حذف شد.");
+      loadNewsAdmin();
+    }
+  </script>
+</body>
+</html>
