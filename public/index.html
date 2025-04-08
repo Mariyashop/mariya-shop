@@ -526,7 +526,7 @@ function loadAds() {
   }
 }
 
-  function loadNews() {
+function loadNews() {
   const news = data.news;
   const container = document.getElementById("newsContainer");
   container.innerHTML = "";
@@ -551,7 +551,7 @@ function loadAds() {
     });
   }
 
-  // تنظیمات Swiper
+  // تنظیمات Swiper بدون autoplay
   new Swiper('.swiper-container', {
     slidesPerView: 1, // فقط یک اسلاید در هر زمان نمایش داده شود
     spaceBetween: 10,
@@ -563,10 +563,8 @@ function loadAds() {
       1024: { slidesPerView: 3, spaceBetween: 30 },
     },
     loop: news.length > 1, // لوپ فقط وقتی بیش از یک خبر باشد
-    autoplay: news.length > 1 ? { delay: 30000, disableOnInteraction: false } : false,
   });
-  }
-
+}
     const adModal = document.getElementById("adModal");
     const closeAdModal = document.getElementById("closeAdModal");
     const adForm = document.getElementById("adForm");
