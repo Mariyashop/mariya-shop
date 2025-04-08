@@ -62,7 +62,7 @@
       .w-10 { width: 2rem; }
       .h-10 { height: 2rem; }
       .user-controls button { padding: 0.5rem 1rem; font-size: 0.875rem; }
-      .swiper-slide { width: 85%; margin: 0 auto; }
+      .swiper-slide { width: 100%; margin: 0 auto; }
       .swiper-button-next, .swiper-button-prev {
         width: 20px;
         height: 20px;
@@ -551,27 +551,20 @@ function loadNews() {
     });
   }
 
-  // تنظیمات Swiper
+  // تنظیمات Swiper بدون autoplay
   new Swiper('.swiper-container', {
     slidesPerView: 1, // فقط یک اسلاید در هر زمان نمایش داده شود
-    spaceBetween: 0, // فاصله بین اسلایدها رو حذف می‌کنیم
-    centeredSlides: true, // اسلایدها دقیقاً در مرکز قرار بگیرن
+    spaceBetween: 10,
+    centeredSlides: true, // اسلایدها در مرکز قرار بگیرند
     pagination: { el: '.swiper-pagination', clickable: true },
     navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
     breakpoints: {
-      640: { slidesPerView: 1, spaceBetween: 0 },
-      1024: { slidesPerView: 4, spaceBetween: 0 },
+      640: { slidesPerView: 1, spaceBetween: 20 },
+      1024: { slidesPerView: 3, spaceBetween: 30 },
     },
-    loop: news.length > 1, // لوپ فقط وقتی بیش از یک خبر باشه
-    autoplay: {
-      delay: 5000, // حرکت خودکار هر ۵ ثانیه
-      disableOnInteraction: false,
-    },
-    // مطمئن می‌شیم عرض اسلایدها به کانتینر محدود بشه
-    watchSlidesProgress: true,
-    slidesPerGroup: 1,
+    loop: news.length > 1, // لوپ فقط وقتی بیش از یک خبر باشد
   });
-  }
+}
     const adModal = document.getElementById("adModal");
     const closeAdModal = document.getElementById("closeAdModal");
     const adForm = document.getElementById("adForm");
