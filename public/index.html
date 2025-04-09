@@ -526,45 +526,43 @@ function loadAds() {
   }
 }
 
-function loadNews() {
-  const news = data.news;
-  const container = document.getElementById("newsContainer");
-  container.innerHTML = "";
-  if (news.length === 0) {
-    container.innerHTML = `<div class="swiper-slide"><p class="text-center text-gray-600">هیچ خبری موجود نیست.</p></div>`;
-  } else {
-    news.forEach((item, index) => {
-      const card = document.createElement("div");
-      card.className = "swiper-slide";
-      card.innerHTML = `
-        <div class="bg-white rounded-xl shadow-md p-4 flex flex-col border border-blue-100 transform transition-all duration-300 hover:shadow-xl">
-          <div class="overflow-hidden rounded-lg">
-            <img src="${item.image || 'https://via.placeholder.com/150'}" alt="${item.title}" class="w-full h-40 object-cover transition-transform duration-300 hover:scale-110">
-          </div>
-          <div class="mt-2 space-y-2">
-            <h3 class="text-xl font-bold text-gray-800">${item.title}</h3>
-            <p class="text-sm text-gray-600">${item.description}</p>
-          </div>
-        </div>
-      `;
-      container.appendChild(card);
-    });
-  }
-
-  // تنظیمات Swiper بدون autoplay
-  new Swiper('.swiper-container', {
-    slidesPerView: 1, // فقط یک اسلاید در هر زمان نمایش داده شود
-    spaceBetween: 10,
-    centeredSlides: true, // اسلایدها در مرکز قرار بگیرند
-    pagination: { el: '.swiper-pagination', clickable: true },
-    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-    breakpoints: {
-      640: { slidesPerView: 1, spaceBetween: 20 },
-      1024: { slidesPerView: 3, spaceBetween: 30 },
-    },
-    // لوپ فقط وقتی بیش از یک خبر باشد
-  });
-}
+    function loadNews() {
+       const news = data.news;
+       const container = document.getElementById("newsContainer");
+       container.innerHTML = "";
+       if(news.length === 0) {
+         container.innerHTML = `<div class="swiper-slide"><p class="text-center text-gray-600">هیچ خبری موجود نیست.</p></div>`;
+       } else {
+         news.forEach((item, index) => {
+           const card = document.createElement("div");
+           card.className = "swiper-slide";
+           card.innerHTML = `
+             <div class="bg-white rounded-xl shadow-md p-4 flex flex-col border border-blue-100 transform transition-all duration-300 hover:shadow-xl">
+               <div class="overflow-hidden rounded-lg">
+                 <img src="${item.image || 'https://via.placeholder.com/150'}" alt="${item.title}" class="w-full h-40 object-cover transition-transform duration-300 hover:scale-110">
+               </div>
+               <div class="mt-2 space-y-2">
+                 <h3 class="text-xl font-bold text-gray-800">${item.title}</h3>
+                 <p class="text-sm text-gray-600">${item.description}</p>
+               </div>
+             </div>
+           `;
+           container.appendChild(card);
+         });
+       }
+       new Swiper('.swiper-container', {
+         slidesPerView: 1,
+         spaceBetween: 10,
+         pagination: { el: '.swiper-pagination', clickable: true },
+         navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+         breakpoints: {
+           640: { slidesPerView: 1, spaceBetween: 25 },
+           1024: { slidesPerView: 5, spaceBetween: 30 },
+         },
+         
+         autoplay: news.length > 1 ? { delay: 6000, disableOnInteraction: false } : false,
+       });
+    }
     const adModal = document.getElementById("adModal");
     const closeAdModal = document.getElementById("closeAdModal");
     const adForm = document.getElementById("adForm");
