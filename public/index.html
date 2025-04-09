@@ -198,6 +198,35 @@
       mobileMenu.classList.toggle('open');
     });
   </script>
+  <!-- لودر -->
+<div id="loader" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75 z-50 transition-opacity duration-500">
+  <div class="text-center">
+    <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 border-4 border-t-4 border-t-blue-500 border-gray-200 rounded-full animate-[spin_1s_linear_infinite] mb-4"></div>
+    <p class="text-white text-lg sm:text-xl md:text-2xl font-semibold">لطفاً صبر کنید...</p>
+    <p class="text-gray-300 text-sm sm:text-base md:text-lg mt-2">در حال بارگذاری سایت</p>
+  </div>
+</div>
+
+<!-- استایل انیمیشن -->
+<style>
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  @keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+</style>
+
+<!-- اسکریپت برای مخفی کردن لودر -->
+<script>
+  window.onload = () => {
+    const loader = document.getElementById("loader");
+    loader.classList.add("opacity-0");
+    setTimeout(() => loader.style.display = "none", 500);
+  };
+</script>
   <main class="container mx-auto mt-6 px-4 space-y-10">
     <section>
       <h1 class="text-xl font-semibold mb-4 text-center text-gray-600">اخبار کوتاه</h1>
