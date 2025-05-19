@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ماریا شاپ</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
+    <script src="https://unpkg.com/parse@4.0.0/dist/parse.min.js"></script>
     <link href="https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/heroicons/2.1.5/24/outline/style.min.css">
     <style>
@@ -34,25 +34,38 @@
         .product-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             animation: fadeIn 0.5s ease-out;
+            position: relative;
         }
         .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
+            background-color: #f9fafb;
         }
         .product-image {
             aspect-ratio: 4/3;
             object-fit: cover;
+            width: 100%;
+            transition: transform 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+        .product-card:hover .product-image {
+            transform: scale(1.05);
         }
         .btn {
             transition: background-color 0.3s ease, transform 0.2s ease;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
             width: 100%;
             justify-content: center;
+            animation: pulse 2s infinite;
         }
         .btn:hover {
             transform: scale(1.05);
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.9; }
         }
         .category-card {
             transition: transform 0.3s ease;
@@ -67,9 +80,16 @@
         .discount-bar {
             animation: pulse 2s infinite;
         }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: linear-gradient(to right, #f97316, #ef4444);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -86,14 +106,14 @@
         </p>
     </div>
 
-    <!-- Navigation (Placeholder, replace with your header) -->
+    <!-- Navigation -->
     <nav class="bg-gradient-to-r from-sky-400 to-orange-200 text-white p-4 sticky top-0 z-10 shadow-md">
         <div class="container mx-auto flex justify-between items-center">
             <h1 class="text-2xl font-extrabold tracking-tight flex items-center gap-2">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h18M3 3v18M3 3l18 18M21 3v18"></path>
                 </svg>
-             ماریا شاپ
+                ماریا شاپ
             </h1>
         </div>
     </nav>
@@ -125,24 +145,6 @@
             </svg>
             دسته‌بندی‌های ویژه
         </h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="category-card bg-white rounded-xl shadow-md p-4 text-center">
-                <img src="https://img.gg.deals/22/0c/59dca273008604c6693bfc4c79225758c3a8_1232xr706_Q100.jpg" alt="پرفروش‌ها" class="w-16 h-16 mx-auto mb-3">
-                <h3 class="text-lg font-semibold text-gray-800">پرفروش‌ها</h3>
-            </div>
-            <div class="category-card bg-white rounded-xl shadow-md p-4 text-center">
-                <img src="https://media.assettype.com/afkgaming%2F2023-10%2Fcea9f8ee-d19f-4361-83a0-32185a57193a%2Fimage_1200x630__14_.jpg?auto=format%2Ccompress&dpr=1.0&w=1200" alt="جدیدترین‌ها" class="w-16 h-16 mx-auto mb-3">
-                <h3 class="text-lg font-semibold text-gray-800">جدیدترین‌ها</h3>
-            </div>
-            <div class="category-card bg-white rounded-xl shadow-md p-4 text-center">
-                <img src="https://img.gg.deals/22/0c/59dca273008604c6693bfc4c79225758c3a8_1232xr706_Q100.jpg" alt="تخفیف‌ها" class="w-16 h-16 mx-auto mb-3">
-                <h3 class="text-lg font-semibold text-gray-800">تخفیف‌ها</h3>
-            </div>
-            <div class="category-card bg-white rounded-xl shadow-md manoeuvre-4 text-center">
-                <img src="https://media.assettype.com/afkgaming%2F2023-10%2Fcea9f8ee-d19f-4361-83a0-32185a57193a%2Fimage_1200x630__14_.jpg?auto=format%2Ccompress&dpr=1.0&w=1200" alt="محبوب‌ها" class="w-16 h-16 mx-auto mb-3">
-                <h3 class="text-lg font-semibold text-gray-800">محبوب‌ها</h3>
-            </div>
-        </div>
     </section>
 
     <!-- Store Section -->
@@ -185,7 +187,6 @@
         Parse.initialize('0eLB6FnpA8dXP0iRmwp3DDITXiOwtssSiAYdYYWz', 'pNYu0vC8JD68wxrJjS4lKwvOVELbPOY3jlx4N8iP'); // کلیدها را از داشبورد Back4App وارد کنید
         Parse.serverURL = 'https://parseapi.back4app.com/';
 
-
         // Load Products for Store
         async function loadProducts() {
             const Product = Parse.Object.extend("rxoproduct");
@@ -196,29 +197,31 @@
                 productList.innerHTML = '';
                 results.forEach(product => {
                     const imageUrl = product.get('image')?.url() || 'https://via.placeholder.com/300';
-                    console.log(`Product: ${product.get('name')}, Image URL: ${imageUrl}`); // Debug
+                    const price = product.get('price') !== undefined ? product.get('price') : 0;
+                    console.log(`Product: ${product.get('name') || 'No Name'}, Image URL: ${imageUrl}, Price: ${price}`);
                     const card = document.createElement('div');
-                    card.className = 'product-card bg-white rounded-2xl shadow-lg overflow-hidden';
+                    card.className = 'product-card bg-white rounded-2xl shadow-xl overflow-hidden';
                     card.innerHTML = `
-                        <img src="${imageUrl}" alt="${product.get('name')}" class="w-full h-48 sm:h-56 product-image">
-                        <div class="p-4 sm:p-6">
-                            <h3 class="text-base sm:text-lg font-semibold text-gray-800 flex items-center gap-2">
+                        ${price > 500000 ? '<span class="discount-badge">20٪ تخفیف</span>' : ''}
+                        <img src="${imageUrl}" alt="${product.get('name') || 'بدون نام'}" class="product-image">
+                        <div class="p-3 sm:p-5">
+                            <h3 class="text-sm sm:text-lg font-semibold text-gray-800 flex items-center gap-2">
                                 <svg class="w-5 h-5 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path>
                                 </svg>
-                                ${product.get('name')}
+                                ${product.get('name') || 'بدون نام'}
                             </h3>
-                            <p class="text-gray-600 text-sm mt-2 line-clamp-2">${product.get('description')}</p>
-                            <p class="text-sky-600 font-bold text-md sm:text-lg mt-3">${product.get('price').toLocaleString()} تومان</p>
-                            <div class="mt-4 flex flex-col space-y-2">
-                                <a href="https://t.me/youungblack" target="_blank" class="btn bg-green-500 text-white px-3 py-2 rounded-lg hover:bg-green-600 text-sm sm:text-base">
-                                    <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <p class="text-gray-600 text-xs sm:text-sm mt-2 line-clamp-2">${product.get('description') || 'بدون توضیحات'}</p>
+                            <p class="text-sky-600 font-bold text-base sm:text-lg mt-3">${price.toLocaleString()} تومان</p>
+                            <div class="mt-3 flex flex-col space-y-2">
+                                <a href="https://t.me/youungblack" target="_blank" class="btn bg-gradient-to-r from-green-400 to-green-600 text-white px-3 py-1.5 sm:py-2 rounded-lg hover:from-green-500 hover:to-green-700 text-sm sm:text-base">
+                                    <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
                                     </svg>
                                     خرید از تلگرام
                                 </a>
-                                <a href="https://instagram.com/mariyarxo.shop" target="_blank" class="btn bg-pink-500 text-white px-3 py-2 rounded-lg hover:bg-pink-600 text-sm sm:text-base">
-                                    <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <a href="https://instagram.com/mariyarxo.shop" target="_blank" class="btn bg-gradient-to-r from-pink-400 to-pink-600 text-white px-3 py-1.5 sm:py-2 rounded-lg hover:from-pink-500 hover:to-pink-700 text-sm sm:text-base">
+                                    <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                     </svg>
@@ -231,6 +234,7 @@
                 });
             } catch (error) {
                 console.error('Error loading products:', error);
+                alert('خطا در بارگذاری محصولات: ' + error.message);
             }
         }
 
