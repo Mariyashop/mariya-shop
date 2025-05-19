@@ -39,11 +39,17 @@
             transform: translateY(-8px);
             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
         }
+        .product-image {
+            aspect-ratio: 4/3;
+            object-fit: cover;
+        }
         .btn {
             transition: background-color 0.3s ease, transform 0.2s ease;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            width: 100%;
+            justify-content: center;
         }
         .btn:hover {
             transform: scale(1.05);
@@ -87,9 +93,14 @@
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h18M3 3v18M3 3l18 18M21 3v18"></path>
                 </svg>
-                فروشگاه ماریا
+                فروشگاه رنگین
             </h1>
-
+            <a href="admin.html" class="text-sm bg-sky-500 px-3 py-1 rounded-lg hover:bg-sky-600 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 1.104-.896 2-2 2s-2-.896-2-2 2-4 2-4 2 2.896 2 4zm0 0c0 1.104.896 2 2 2s2-.896 2-2-2-4-2-4-2 2.896-2 4zm-7 7c0-1.104.896-2 2-2s2 .896 2 2-2 4-2 4-2-2.896-2-4zm14 0c0-1.104.896-2 2-2s2 .896 2 2-2 4-2 4-2-2.896-2-4z"></path>
+                </svg>
+                پنل ادمین
+            </a>
         </div>
     </nav>
 
@@ -100,6 +111,7 @@
                 <svg class="w-10 h-10 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
+me-auto
                 به فروشگاه رنگین خوش آمدید!
             </h2>
             <p class="text-lg text-gray-600 mb-6">بهترین محصولات با قیمت‌های باورنکردنی</p>
@@ -116,7 +128,7 @@
     <section class="container mx-auto py-12 px-4">
         <h2 class="text-3xl font-extrabold mb-8 text-center text-gray-800 flex items-center justify-center gap-3">
             <svg class="w-8 h-8 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012(_2v2M7 7h10"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
             </svg>
             دسته‌بندی‌های ویژه
         </h2>
@@ -133,7 +145,7 @@
                 <img src="https://via.placeholder.com/100" alt="تخفیف‌ها" class="w-16 h-16 mx-auto mb-3">
                 <h3 class="text-lg font-semibold text-gray-800">تخفیف‌ها</h3>
             </div>
-            <div class="category-card bg-white rounded-xl shadow-md p-4 text-center">
+            <div class="category-card bg-white rounded-xl shadow-md manoeuvre-4 text-center">
                 <img src="https://via.placeholder.com/100" alt="محبوب‌ها" class="w-16 h-16 mx-auto mb-3">
                 <h3 class="text-lg font-semibold text-gray-800">محبوب‌ها</h3>
             </div>
@@ -148,7 +160,7 @@
             </svg>
             محصولات ما
         </h2>
-        <div id="productList" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div id="productList" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
             <!-- Products will be loaded here -->
         </div>
     </section>
@@ -170,7 +182,7 @@
                     </svg>
                 </a>
             </div>
-            <p class="text-sm">تماس: info@ranginshop.com | تلفن: 021</p>
+            <p class="text-sm">تماس: info@ranginshop.com | تلفن: نداریم</p>
             <p class="text-sm mt-2">© 1404 فروشگاه ماریا همه حقوق محفوظ است.</p>
         </div>
     </footer>
@@ -179,6 +191,7 @@
         // Initialize Parse
         Parse.initialize('0eLB6FnpA8dXP0iRmwp3DDITXiOwtssSiAYdYYWz', 'pNYu0vC8JD68wxrJjS4lKwvOVELbPOY3jlx4N8iP'); // کلیدها را از داشبورد Back4App وارد کنید
         Parse.serverURL = 'https://parseapi.back4app.com/';
+
 
         // Load Products for Store
         async function loadProducts() {
@@ -189,32 +202,34 @@
                 const productList = document.getElementById('productList');
                 productList.innerHTML = '';
                 results.forEach(product => {
+                    const imageUrl = product.get('image')?.url() || 'https://via.placeholder.com/300';
+                    console.log(`Product: ${product.get('name')}, Image URL: ${imageUrl}`); // Debug
                     const card = document.createElement('div');
                     card.className = 'product-card bg-white rounded-2xl shadow-lg overflow-hidden';
                     card.innerHTML = `
-                        <img src="${product.get('image')?.url() || 'https://via.placeholder.com/300'}" alt="${product.get('name')}" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-lg font-semibold text-gray-800 flex items-center gap-2">
+                        <img src="${imageUrl}" alt="${product.get('name')}" class="w-full h-48 sm:h-56 product-image">
+                        <div class="p-4 sm:p-6">
+                            <h3 class="text-base sm:text-lg font-semibold text-gray-800 flex items-center gap-2">
                                 <svg class="w-5 h-5 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path>
                                 </svg>
                                 ${product.get('name')}
                             </h3>
                             <p class="text-gray-600 text-sm mt-2 line-clamp-2">${product.get('description')}</p>
-                            <p class="text-sky-600 font-bold text-md mt-3">${product.get('price').toLocaleString()} تومان</p>
-                            <div class="mt-4 flex space-x-2">
-                                <a href="https://t.me/youungblack" target="_blank" class="btn bg-green-500 text-white px-3 py-2 rounded-lg hover:bg-green-600 text-sm">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <p class="text-sky-600 font-bold text-md sm:text-lg mt-3">${product.get('price').toLocaleString()} تومان</p>
+                            <div class="mt-4 flex flex-col space-y-2">
+                                <a href="https://t.me/youungblack" target="_blank" class="btn bg-green-500 text-white px-3 py-2 rounded-lg hover:bg-green-600 text-sm sm:text-base">
+                                    <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
                                     </svg>
-                                    تلگرام
+                                    خرید از تلگرام
                                 </a>
-                                <a href="https://instagram.com/mariyarxo.shop" target="_blank" class="btn bg-pink-500 text-white px-3 py-2 rounded-lg hover:bg-pink-600 text-sm">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <a href="https://instagram.com/mariyarxo.shop" target="_blank" class="btn bg-pink-500 text-white px-3 py-2 rounded-lg hover:bg-pink-600 text-sm sm:text-base">
+                                    <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                     </svg>
-                                    اینستاگرام
+                                    خرید از اینستاگرام
                                 </a>
                             </div>
                         </div>
