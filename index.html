@@ -24,7 +24,7 @@
             z-index: -1;
             opacity: 0.2;
             background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23bae6fd' fill-opacity='0.5' d='M0,192L48,176C96,160,192,128,288,128C384,128,480,160,576,160C672,160,768,128,864,128C960,128,1056,160,1152,176C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") repeat-x bottom,
-                        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23fed7aa' fill-opacity='0.5' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,128C672,128,768,160,864,160C960,160,1056,128,1152,112C1248,96,1344,96,1392,96L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E") repeat-x top;
+                        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23fed7aa' fill-opacity='0.5' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,128C672,128,768,160,864,160C960,160,1056,128,1152,112C1248,96,1344,96,1392,96L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E") repeat-x top;
             animation: waveMove 15s linear infinite;
         }
         @keyframes waveMove {
@@ -48,39 +48,137 @@
         .btn:hover {
             transform: scale(1.05);
         }
+        .category-card {
+            transition: transform 0.3s ease;
+        }
+        .category-card:hover {
+            transform: scale(1.03);
+        }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+        .discount-bar {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
         }
     </style>
 </head>
 <body class="min-h-screen">
     <div class="background-wave"></div>
 
-    <!-- Navigation -->
+    <!-- Discount Bar -->
+    <div class="discount-bar bg-orange-300 text-gray-800 text-center py-2">
+        <p class="text-sm font-medium flex items-center justify-center gap-2">
+            <svg class="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            20٪ تخفیف برای خریدهای بالای 500,000 تومان!
+        </p>
+    </div>
+
+    <!-- Navigation (Placeholder, replace with your header) -->
     <nav class="bg-gradient-to-r from-sky-400 to-orange-200 text-white p-4 sticky top-0 z-10 shadow-md">
         <div class="container mx-auto flex justify-between items-center">
             <h1 class="text-2xl font-extrabold tracking-tight flex items-center gap-2">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h18M3 3v18M3 3l18 18M21 3v18"></path>
                 </svg>
-                ماریا شاپ
+                فروشگاه رنگین
             </h1>
+            <a href="admin.html" class="text-sm bg-sky-500 px-3 py-1 rounded-lg hover:bg-sky-600 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 1.104-.896 2-2 2s-2-.896-2-2 2-4 2-4 2 2.896 2 4zm0 0c0 1.104.896 2 2 2s2-.896 2-2-2-4-2-4-2 2.896-2 4zm-7 7c0-1.104.896-2 2-2s2 .896 2 2-2 4-2 4-2-2.896-2-4zm14 0c0-1.104.896-2 2-2s2 .896 2 2-2 4-2 4-2-2.896-2-4z"></path>
+                </svg>
+                پنل ادمین
+            </a>
         </div>
     </nav>
 
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-sky-100 to-orange-100 py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-extrabold text-gray-800 mb-4 flex items-center justify-center gap-3">
+                <svg class="w-10 h-10 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                به فروشگاه رنگین خوش آمدید!
+            </h2>
+            <p class="text-lg text-gray-600 mb-6">بهترین محصولات با قیمت‌های باورنکردنی</p>
+            <a href="#store" class="btn bg-sky-500 text-white px-6 py-3 rounded-lg hover:bg-sky-600 inline-flex items-center gap-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                </svg>
+                خرید کنید
+            </a>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="container mx-auto py-12 px-4">
+        <h2 class="text-3xl font-extrabold mb-8 text-center text-gray-800 flex items-center justify-center gap-3">
+            <svg class="w-8 h-8 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+            </svg>
+            دسته‌بندی‌های ویژه
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="category-card bg-white rounded-xl shadow-md p-4 text-center">
+                <img src="https://via.placeholder.com/100" alt="پرفروش‌ها" class="w-16 h-16 mx-auto mb-3">
+                <h3 class="text-lg font-semibold text-gray-800">پرفروش‌ها</h3>
+            </div>
+            <div class="category-card bg-white rounded-xl shadow-md p-4 text-center">
+                <img src="https://via.placeholder.com/100" alt="جدیدترین‌ها" class="w-16 h-16 mx-auto mb-3">
+                <h3 class="text-lg font-semibold text-gray-800">جدیدترین‌ها</h3>
+            </div>
+            <div class="category-card bg-white rounded-xl shadow-md p-4 text-center">
+                <img src="https://via.placeholder.com/100" alt="تخفیف‌ها" class="w-16 h-16 mx-auto mb-3">
+                <h3 class="text-lg font-semibold text-gray-800">تخفیف‌ها</h3>
+            </div>
+            <div class="category-card bg-white rounded-xl shadow-md p-4 text-center">
+                <img src="https://via.placeholder.com/100" alt="محبوب‌ها" class="w-16 h-16 mx-auto mb-3">
+                <h3 class="text-lg font-semibold text-gray-800">محبوب‌ها</h3>
+            </div>
+        </div>
+    </section>
+
     <!-- Store Section -->
     <section id="store" class="container mx-auto py-12 px-4">
-        <h2 class="text-4xl font-extrabold mb-10 text-center text-gray-800 flex items-center justify-center gap-3">
-            <svg class="w-10 h-10 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <h2 class="text-3xl font-extrabold mb-8 text-center text-gray-800 flex items-center justify-center gap-3">
+            <svg class="w-8 h-8 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
             </svg>
             محصولات ما
         </h2>
-        <div id="productList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div id="productList" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             <!-- Products will be loaded here -->
         </div>
     </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-sky-400 to-orange-200 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <h3 class="text-xl font-bold mb-4">با ما در ارتباط باشید</h3>
+            <div class="flex justify-center space-x-4 mb-4">
+                <a href="https://t.me/YOUR_TELEGRAM" target="_blank" class="hover:opacity-80">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9  の18 9-2zm0 0v-8"></path>
+                    </svg>
+                </a>
+                <a href="https://instagram.com/YOUR_INSTAGRAM" target="_blank" class="hover:opacity-80">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                </a>
+            </div>
+            <p class="text-sm">تماس: info@ranginshop.com | تلفن: 021-12345678</p>
+            <p class="text-sm mt-2">© 1404 فروشگاه رنگین. همه حقوق محفوظ است.</p>
+        </div>
+    </footer>
 
     <script>
         // Initialize Parse
@@ -89,7 +187,7 @@
 
         // Load Products for Store
         async function loadProducts() {
-            const Product = Parse.Object.extend("product");
+            const Product = Parse.Object.extend("Product");
             const query = new Parse.Query(Product);
             try {
                 const results = await query.find();
@@ -99,29 +197,29 @@
                     const card = document.createElement('div');
                     card.className = 'product-card bg-white rounded-2xl shadow-lg overflow-hidden';
                     card.innerHTML = `
-                        <img src="${product.get('image')?.url() || 'https://via.placeholder.com/300'}" alt="${product.get('name')}" class="w-full h-64 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold text-gray-800 flex items-center gap-2">
-                                <svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <img src="${product.get('image')?.url() || 'https://via.placeholder.com/300'}" alt="${product.get('name')}" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-gray-800 flex items-center gap-2">
+                                <svg class="w-5 h-5 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path>
                                 </svg>
                                 ${product.get('name')}
                             </h3>
                             <p class="text-gray-600 text-sm mt-2 line-clamp-2">${product.get('description')}</p>
-                            <p class="text-sky-600 font-bold text-lg mt-3">${product.get('price').toLocaleString()} تومان</p>
-                            <div class="mt-5 flex space-x-3">
-                                <a href="https://t.me/youungblack" target="_blank" class="btn bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <p class="text-sky-600 font-bold text-md mt-3">${product.get('price').toLocaleString()} تومان</p>
+                            <div class="mt-4 flex space-x-2">
+                                <a href="https://t.me/youungblack" target="_blank" class="btn bg-green-500 text-white px-3 py-2 rounded-lg hover:bg-green-600 text-sm">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
                                     </svg>
-                                    خرید از تلگرام
+                                    تلگرام
                                 </a>
-                                <a href="https://instagram.com/mariyarxo.shop" target="_blank" class="btn bg-pink-500 text-white px-4 py-2 rounded-lg hover:bg-pink-600">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <a href="https://instagram.com/mariyarxo.shop" target="_blank" class="btn bg-pink-500 text-white px-3 py-2 rounded-lg hover:bg-pink-600 text-sm">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                     </svg>
-                                    خرید از اینستاگرام
+                                    اینستاگرام
                                 </a>
                             </div>
                         </div>
