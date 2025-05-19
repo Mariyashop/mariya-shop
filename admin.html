@@ -60,13 +60,13 @@
 
     <script>
         // Initialize Parse
-        Parse.initialize("YOUR_APP_ID", "YOUR_JAVASCRIPT_KEY");
+        Parse.initialize('0eLB6FnpA8dXP0iRmwp3DDITXiOwtssSiAYdYYWz', 'pNYu0vC8JD68wxrJjS4lKwvOVELbPOY3jlx4N8iP'); // کلیدها را از داشبورد Back4App وارد کنید
         Parse.serverURL = 'https://parseapi.back4app.com/';
 
         // Load Products for Admin
         async function loadAdminProducts() {
-            const Product = Parse.Object.extend("Product");
-            const query = new Parse.Query(Product);
+            const Product = Parse.Object.extend("product");
+            const query = new Parse.Query(product);
             try {
                 const results = await query.find();
                 const adminProductList = document.getElementById('adminProductList');
