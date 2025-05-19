@@ -90,7 +90,7 @@
         // Load Products for Store
         async function loadProducts() {
             const Product = Parse.Object.extend("product");
-            const query = new Parse.Query(product);
+            const query = new Parse.Query(Product);
             try {
                 const results = await query.find();
                 const productList = document.getElementById('productList');
